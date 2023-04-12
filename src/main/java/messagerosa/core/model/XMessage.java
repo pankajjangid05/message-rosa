@@ -104,8 +104,8 @@ public class XMessage implements Serializable {
 	static {
 		try {
 			context = JAXBContext.newInstance(XMessage.class);
-			marshaller = context.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//			marshaller = context.createMarshaller();
+//			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
@@ -114,6 +114,8 @@ public class XMessage implements Serializable {
 
 	public String toXML() throws JAXBException {
 		StringWriter stringWriter = new StringWriter();
+		marshaller = context.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		marshaller.marshal(this, stringWriter);
 		return stringWriter.toString();
 	}
